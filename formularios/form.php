@@ -6,7 +6,7 @@
   <title>Formulario</title>
 </head>
 <body>
-  <form action="exibir.php" method="get">
+  <form action="exibir.php" method="post">
     Nome: <input type="text" name="nome" />
     Idade: <input type="number" name="idade" />
     E-mail: <input type="email" name="email" />
