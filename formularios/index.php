@@ -52,19 +52,42 @@
     </div>
     <button name="enviado" type="submit">Enviar</button>
   </form>
-    <h2>Dados enviados:</h2>
-    <?php
-    if (isset($_POST['enviado'])) {
-      foreach ($_POST as $key => $value) {
-        if($key === "enviado") {
-          return;
-        }
-        if($value != "") {
-          echo "O " . ucfirst($key) . " é: " . $value . "<br>";
-        }
+  <h2>Dados enviados:</h2>
+  <?php
+  if (isset($_POST['enviado'])) {
+    if (empty($_POST['nome']) || strlen($_POST['nome']) < 3 || strlen($_POST["nome"]) > 100) {
+      echo '<p class="error">Nome inválido</p>';
+      die();
+    }
+
+    if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+      echo '<p class="error">Email inválido</p>';
+      die();
+    }
+
+    if (!empty($_POST['website']) && !filter_var($_POST['website'], FILTER_VALIDATE_URL)) {
+      echo '<p class="error">URL inválida</p>';
+      die();
+    }
+    if (
+      !empty($_POST['genero'])
+      &&
+      ($_POST['genero'] != 'masculino' && $_POST['genero'] != 'feminino' && $_POST['genero'] != 'outros')
+    ) {
+      echo '<p class="error">Gênero inválido</p>';
+      die();
+    }
+
+    foreach ($_POST as $key => $value) {
+      if ($key === "enviado") {
+        return;
+      }
+      if ($value != "") {
+        echo "O " . ucfirst($key) . " é: " . $value . "<br>";
       }
     }
-    ?>
+  }
+  ?>
 </body>
 
 </html>
