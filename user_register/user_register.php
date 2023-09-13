@@ -72,7 +72,7 @@ if (count($_POST) > 0) {
 </head>
 
 <body>
-  <a href="/clientes.php">Voltar para a Lista</a>
+  <a href="clientes.php">Voltar para a Lista</a>
   <form action="" method="post">
     <span>
       <label>
