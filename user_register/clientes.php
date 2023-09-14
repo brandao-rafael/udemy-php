@@ -39,15 +39,12 @@ $num_clientes = $result->num_rows;
 
           $telefone = "Não informado";
           if(!empty($cliente['telefone'])) {
-            $ddd = substr($cliente['telefone'], 0, 2);
-            $parte1 = substr($cliente['telefone'], 2, 5);
-            $parte2 = substr($cliente['telefone'], 7);
-            $telefone = "($ddd) $parte1-$parte2";
+            $telefone = phone_format($cliente['telefone']);
           }
 
           $nascimento = "Não informado";
           if(!empty($cliente['nascimento'])) {
-            $nascimento = implode("/", array_reverse(explode("-", $cliente['nascimento'])));
+            $nascimento = date_formater($cliente['nascimento']);
           }
 
           $dataCadastro = date("d/m/Y H:i", strtotime($cliente['data']));
