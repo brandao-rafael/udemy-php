@@ -4,6 +4,7 @@ if(isset($_POST['email']) && isset($_POST['senha'])) {
 
     include('lib/conexao.php');
 
+
     $email = $mysqli->escape_string($_POST['email']);
     $senha = $_POST['senha'];
 
